@@ -1,4 +1,4 @@
-pv4-2016.2
+Rodrigo Medeiros
 =============
 
-Aulas Programação Visual 4 - IFPB 2016.2
+Professor, designer de interação e curador.

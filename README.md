@@ -1,4 +1,4 @@
 Rodrigo Medeiros
 =============
 
-Professor, designer de interação, curador.
+Professor, designer de interação e curador.

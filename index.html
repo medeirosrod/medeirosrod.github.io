@@ -1,285 +1,609 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Medeiros | Design Armorial Tech</title>
+    
+    <!-- Meta tags básicas -->
+    <meta name="description" content="Rodrigo Medeiros - professor, pesquisador, curador, dataviz, designer, design, computação, inteligência artificial.">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'armorial-dark': '#2D2D2A',
+                        'armorial-paper': '#FFFCF9',
+                        'armorial-rust': '#C8553D',
+                        'armorial-gold': '#F2A541',
+                        'armorial-blue': '#2E5077',
+                        'armorial-gray': '#585855'
+                    },
+                    fontFamily: {
+                        xilo: ['Eczar', 'serif'],
+                        body: ['Gabarito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans+Condensed:ital,wght@0,500;1,500&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Fontes Google: Eczar (Xilogravura) e Gabarito (Brasileira) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@500;600;700;800&family=Gabarito:wght@400;500;600&display=swap" rel="stylesheet">
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-        <title>Rodrigo Medeiros - professor, pesquisador, curador, dataviz</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Rodrigo Medeiros</a>
-                </div>
+    <style>
+        /* Textura de papel sutil */
+        .bg-texture {
+            background-color: #FFFCF9;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dcb898' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Ajuste fino de tipografia */
+        .font-xilo { letter-spacing: -0.02em; }
+        
+        /* Estilos de seleção de texto */
+        ::selection {
+            background-color: #F2A541;
+            color: white;
+        }
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">Bio</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Curadorias</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Clipping</a></li>
-                        <!-- <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li> -->
-                    </ul>
-                </div>
+        /* Navbar Scrolled State */
+        .nav-scrolled {
+            background-color: rgba(255, 252, 249, 0.95);
+            backdrop-filter: blur(12px);
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
+            border-bottom: 1px solid #E5DCC5;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-texture text-armorial-dark min-h-screen">
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            
+            <!-- Logo Xilo -->
+            <a href="#" class="font-xilo text-3xl md:text-4xl font-extrabold text-armorial-dark hover:text-armorial-rust transition-colors tracking-tight">
+                rodrigo medeiros
+            </a>
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Oi, sou <br> <span class="home__title-color">Rodrigo Medeiros</span><br></h1>
-                    <h2 class="home__title">Professor e pesquisador em<br> design de interação e visualização de dados</h2>
-
-                    <a href="#about" class="button">Saiba mais</a>
-                </div>
-
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/rodrigopmedeiros/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://twitter.com/datavizbr" class="home__social-icon"><i class='bx bxl-twitter' ></i></a>
-                    <a href="https://www.instagram.com/datavizbr/" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
-                     <a href="https://medium.com/datavizbr" class="home__social-icon"><i class='bx bxl-medium' ></i></a>
-                </div>
-
-                <div class="home__img">    
-                    <img src="assets/img/perfil.png" alt="">
-                     <!-- <h2 class="home__title">Professor e pesquisador em design de interação e visualização de dados</h2> -->
-                     
-                </div>
-            </section>
-
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">Bio</h2>
-
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.jpg" alt="">
-                    </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">Rodrigo Medeiros é pesquisador em design de interação e visualização de dados.</h2>
-                        <p class="about__text">Professor do Curso Superior de Tecnologia em Design Gráfico do IFPB, Professor Colaborador do Mestrado em Engenharia de Software do CESAR School, local leader da IxDA Recife (desde 2011)  e curador do datavizbr - publicação em português sobre visualização de dados.</p> 
-
-						<p class="about__text">É doutor em Ciência da Computação pela UFPE (2019), mestre em Tecnologia e Arte Digital pela Universidade do Minho (2011) e especialista em design da informação pela UFPE (2008).</p>
-
-						<p class="about__text">Consultor de Design Thinking e UX Design no Projeto Movimento Empreendedor Revolucionário na UFPE em 2019 e 2020. O MOVER foi uma parceria entre o Ministério de Ciência, Tecnologia, Inovações (MCTI) e o Núcleo de Tecnologia da Informação da UFPE <!-- e nessa edição o projeto foca em problemas da Assistência Estudantil na UFPE -->.</p>
-
-						<!-- <p class="about__text">Participou entre 2013 e 2015 do projeto Inovação e Sustentabilidade na Gestão de Resíduos: Perspectivas da Aplicação da Política Nacional de Resíduos Sólidos na Região Metropolitana do Recife pela Fundação Joaquim Nabuco e Massachusetts Institute of Technology (MIT) financiado pela FACEPE.</p> -->
-
-						<p class="about__text">É Chair do eixo Tecnologia do Congresso Internacional de Design da Informação - CIDI 2021. Em 2019 e 2020 foi curador de Design Thinking e UX na The Developers Conference em Recife. Entre 2012 e 2017 foi curador de design e visualização de dados da Campus Party Brasil. Em 2013 organizou o Interaction South America, em Recife. <br/> <br/>
-							<a href="http://lattes.cnpq.br/7643665201125488" class="button">Currículo Lattes</a>
-
-
-					
-
-
-
-							<!--que teve 14 palestrantes incríveis:  Bill Buxton, Louis Rosenfeld, Jared Spool, Josh Seiden, Marc Stickdorn, Arne Van Oosterom, Dana Chisnell, Catarina Mota, Pedro Miguel Cruz, Dave Malouf, Santiago Bustelo, Sara Cordoba, Guto Requena e Luciano Meira. --></p> 
-					</div>
-                  </div>                                   
-            </section>
-
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Curadorias</h2>
-
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Organização de eventos</h2>
-                       <!--  <p class="skills__text">Esses são os eventos que organizei entre 2012 e 2021.</p> -->
-
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <!-- <i class='bx bxl-html5 skills__icon'></i> -->
-                                <span class="skills__name">Congresso Internacional de Design da Informação (CIDI)</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">2021</span>
-                            </div>
-                        </div>
-
-
-
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <!-- <i class='bx bxl-html5 skills__icon'></i> -->
-                                <span class="skills__name">The Developers Conference Recife (TDC)</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">2019 e 2020</span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <!-- <i class='bx bxl-html5 skills__icon'></i> -->
-                                <span class="skills__name">Campus Party Brasil</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">2013, 2014, 2015 e 2016</span>
-                            </div>
-                        </div>
-
-                      
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <!-- <i class='bx bxl-html5 skills__icon'></i> -->
-                                <span class="skills__name">Campus Party Recife</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">2012, 2013, 2014 e 2015</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <!-- <i class='bx bxl-html5 skills__icon'></i> -->
-                                <span class="skills__name">Interaction South America (ISA)</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">2013</span>
-                            </div>
-                        </div>
-
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <!-- <i class='bx bxl-html5 skills__icon'></i> -->
-                                <span class="skills__name">Exposição Vazão</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">2012</span>
-                            </div>
-                        </div>
-                        
-                      
-                       
-                    </div>
-                    
-                    <div>              
-                        <img src="assets/img/eventos.jpg" alt="" class="skills__img">
-                    </div>
-                </div>
-            </section>
-
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Clipping</h2>
-
-                <div class="work__container bd-grid">
-                    <div class="work__img">
-                    	<a href="https://www.youtube.com/watch?v=NMtDGrWrOig">
-                    	 <img src="assets/img/on1.jpg" alt="Datavis Lisboa">
-                    	</a>
-                        <!-- <img src="assets/img/work1.jpg" alt=""> -->
-                    </div>
-                    <div class="work__img">
-                    	<a href="https://movimentoux.com/temporada-1/rodrigo-medeiros/">
-                        <img src="assets/img/on2.jpg" alt="Movimento UX">
-                    </a>
-                    </div>
-                    <div class="work__img">
-                    	<a href="https://youtu.be/aVh33xp2qNc">
-                        <img src="assets/img/on3.jpg" alt="XLab">
-                    </a>
-                    </div>
-                    <div class="work__img">
-                        <a href="https://youtu.be/G4ndk4BCscU">
-                        <img src="assets/img/on4.jpg" alt="Visualmente">
-                    </a>
-                    </div>
-                    <div class="work__img">
-                    	<a href="https://anchor.fm/design-centro/episodes/05---Rodrigo-Medeiros--Designer-de-Interao-e-Professor-do-IFPB-ebe4sh">
-                        <img src="assets/img/on5.jpg" alt="Design Centro">
-                    </a>
-                        
-                    </div>
-                    <div class="work__img">
-                        <a href="https://youtu.be/tETSTzgBUeA">
-                        <img src="assets/img/on6.jpg" alt="Design Centro">
-                    </a>
-                        
-                    </div>
-                </div>
-            </section>
-
-            <!--===== CONTACT =====-->
-           <!--  <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
-
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Enviar" class="contact__button button">
-                    </form>
-                </div>
-            </section> -->
-        </main>
-
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Rodrigo Medeiros</p>
-            <div class="footer__social">
-                <a href="https://www.linkedin.com/in/rodrigopmedeiros/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
-                <a href="https://twitter.com/datavizbr" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
-                <a href="https://www.instagram.com/datavizbr/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-               	<a href="https://medium.com/datavizbr" class="footer__icon"><i class='bx bxl-medium' ></i></a>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center font-body">
+                <a href="#bio" class="text-base font-semibold text-armorial-gray hover:text-armorial-rust transition-colors">Bio</a>
+                <a href="#livros" class="text-base font-semibold text-armorial-gray hover:text-armorial-rust transition-colors">Livros</a>
+                <a href="#experiencia" class="text-base font-semibold text-armorial-gray hover:text-armorial-rust transition-colors">Experiência</a>
+                <a href="#curadorias" class="text-base font-semibold text-armorial-gray hover:text-armorial-rust transition-colors">Curadorias</a>
+                <a href="#clipping" class="text-base font-semibold text-armorial-gray hover:text-armorial-rust transition-colors">Mídia</a>
+                
+                <a href="http://lattes.cnpq.br/7643665201125488" target="_blank" class="px-5 py-2 border-2 border-armorial-dark text-armorial-dark rounded-lg text-xs font-bold uppercase tracking-wide hover:bg-armorial-dark hover:text-armorial-paper transition-all">
+                    Lattes
+                </a>
             </div>
 
-            	
-            <p><!-- &#169; --> 2021</p>
-        </footer>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-armorial-dark">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-armorial-paper border-b border-[#E5DCC5] p-6 flex flex-col space-y-6 shadow-xl font-xilo">
+            <a href="#bio" class="text-2xl font-bold text-armorial-dark mobile-link">Bio</a>
+            <a href="#livros" class="text-2xl font-bold text-armorial-dark mobile-link">Livros</a>
+            <a href="#experiencia" class="text-2xl font-bold text-armorial-dark mobile-link">Experiência</a>
+            <a href="#curadorias" class="text-2xl font-bold text-armorial-dark mobile-link">Curadorias</a>
+            <a href="#clipping" class="text-2xl font-bold text-armorial-dark mobile-link">Mídia</a>
+            <a href="http://lattes.cnpq.br/4066462788533333" target="_blank" class="text-center w-full py-3 bg-armorial-dark text-armorial-paper font-body font-bold rounded-lg uppercase tracking-wide text-sm">
+                Ver CV Lattes
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-40 pb-24 md:pt-52 md:pb-40 px-6 overflow-hidden">
+        <div class="container mx-auto max-w-6xl relative z-10 grid md:grid-cols-5 gap-12 items-center">
+            
+            <div class="md:col-span-3 order-2 md:order-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-armorial-gold/20 text-armorial-rust rounded-md text-xs font-bold tracking-wide mb-6 uppercase font-body">
+                    <i data-lucide="map-pin" class="w-3 h-3"></i>
+                    Recife, Pernambuco
+                </div>
+                
+                <h1 class="font-xilo text-5xl md:text-7xl font-bold text-armorial-dark leading-[0.9] mb-6">
+                    Design, Dados <br/>
+                    <span class="text-armorial-rust">& Interação.</span>
+                </h1>
+                
+                <p class="font-body text-xl text-armorial-gray max-w-xl mb-10 leading-relaxed font-normal">
+                    Pesquisador focado em criar pontes entre pessoas, agentes e artefatos digitais. Atualmente Professor na <strong>UFRPE</strong>.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 font-body">
+                    <a href="https://www.linkedin.com/in/rodrigopmedeiros" target="_blank" class="px-8 py-4 bg-armorial-blue text-white rounded-xl font-bold hover:bg-[#1d344f] transition shadow-lg shadow-armorial-blue/20 flex items-center justify-center gap-2">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        LinkedIn
+                    </a>
+                    <a href="#livros" class="px-8 py-4 bg-white text-armorial-dark border border-[#E5DCC5] rounded-xl font-bold hover:bg-white hover:border-armorial-rust transition flex items-center justify-center gap-2 shadow-sm">
+                        Ver Livros
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Graphic Element: "Sol do Agreste" -->
+            <div class="md:col-span-2 order-1 md:order-2 relative h-full min-h-[300px] flex items-center justify-center">
+                <div class="relative w-full aspect-square">
+                    <div class="absolute inset-0 bg-gradient-to-br from-armorial-gold to-armorial-rust rounded-full opacity-10 blur-3xl"></div>
+                    <div class="relative z-10 grid grid-cols-2 gap-4 p-4 md:p-8">
+                        
+                        <!-- Card 1 -->
+                        <div class="bg-white p-6 rounded-none border-2 border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,1)] flex flex-col items-center justify-center aspect-square transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                            <span class="text-5xl font-xilo font-extrabold text-armorial-rust">18+</span>
+                            <span class="text-xs uppercase tracking-wider text-armorial-gray mt-2 text-center font-body font-bold">Anos de Experiência Profissional</span>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="bg-armorial-dark p-6 rounded-none border-2 border-armorial-dark shadow-[4px_4px_0px_0px_rgba(200,85,61,1)] flex flex-col items-center justify-center aspect-square transform -rotate-2 hover:rotate-0 transition-transform duration-300 text-armorial-paper">
+                            <i data-lucide="graduation-cap" class="mb-2 text-armorial-gold w-8 h-8"></i>
+                            <span class="font-xilo font-bold text-xl">Doutor, PhD</span>
+                            <span class="text-[10px] uppercase tracking-wider text-[#dadada] mt-1 font-body font-bold">Cin-UFPE</span>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="bg-armorial-blue p-6 rounded-none border-2 border-armorial-dark shadow-[4px_4px_0px_0px_rgba(242,165,65,1)] flex flex-col items-center justify-center aspect-square transform -rotate-1 hover:rotate-0 transition-transform duration-300 text-white col-span-2 mt-[-20px]">
+                            <span class="text-2xl font-xilo font-bold">Consultor, Coordenador de Projetos e Líder Técnico.</span>
+                            <span class="text-xs text-blue-100 mt-1 font-body font-small ">Tem algum projeto que posso ajudar? Vamos conversar! <span class="text-armorial-blue">AAA</span></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- LIVROS -->
+    <section id="livros" class="py-20 px-6 bg-armorial-dark text-armorial-paper">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-armorial-gold font-bold uppercase tracking-widest text-xs mb-2 block font-body">Produção Bibliográfica</span>
+                    <h2 class="text-3xl md:text-4xl font-xilo font-bold">Livros Publicados</h2>
+                </div>
+                <p class="text-[#dadada] text-sm max-w-md md:text-right font-body">
+                    Obras que exploram a teoria e prática do design e computação.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 font-body">
+                
+                <!-- Livro 1 -->
+                <div class="group relative bg-[#383835] rounded-xl p-8 border border-[#4A4A46] hover:border-armorial-gold transition-all duration-300 flex gap-6 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-armorial-rust rounded-bl-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="flex-shrink-0 pt-2">
+                        <div class="w-14 h-18 bg-armorial-paper shadow-lg flex items-center justify-center text-armorial-dark border border-armorial-dark p-2">
+                            <i data-lucide="book" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <div class="relative z-10">
+                        <a href="https://www.riobooks.com.br/design/dataviz-em-perspectiva"> 
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-2xl font-xilo font-bold leading-tight text-white">Dataviz em Perspectiva: Ensino e Prática Profissional no Design Brasileiro.</h3>
+                        </div>
+                        <p class="text-armorial-gold text-sm font-semibold mb-3">Rodrigo Medeiros & Julia Giannella</p>
+                        <p class="text-[#dadada] leading-relaxed text-sm font-normal">Uma análise abrangente sobre o ensino e a prática profissional da visualização de dados no design brasileiro.</p>
+                    </a>
+                    </div>
+                </div>
+
+                <!-- Livro 2 -->
+                <div class="group relative bg-[#383835] rounded-xl p-8 border border-[#4A4A46] hover:border-armorial-gold transition-all duration-300 flex gap-6 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-armorial-blue rounded-bl-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="flex-shrink-0 pt-2">
+                        <div class="w-14 h-18 bg-armorial-paper shadow-lg flex items-center justify-center text-armorial-dark border border-armorial-dark p-2">
+                            <i data-lucide="book" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                          
+                    <div class="relative z-10"> 
+                        <a href="https://a.co/d/gb2HqoK">                            
+                        <div class="flex justify-between items-start mb-1">
+
+                            <h3 class="text-2xl font-xilo font-bold leading-tight text-white"> Sinfonia: Orquestrando a Inteligência Artificial</h3>
+                        </div>
+                        <p class="text-armorial-gold text-sm font-semibold mb-3">Rodrigo Medeiros & Vinicius Garcia</p>
+                        <p class="text-[#dadada] leading-relaxed text-sm font-normal">O livro apresenta uma metodologia nascida e validada em um laboratório vivo na universidade, projetada especificamente para guiar equipes na criação e evolução de produtos de IA de sucesso e entrega um framework completo para transformar o caos da inovação em uma composição coesa e impactante.</p>
+                    </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BIO & EXPERIÊNCIA -->
+    <section id="bio" class="py-24 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-12 gap-12">
+                
+                <!-- Left: Bio & Education -->
+                <div class="md:col-span-12 space-y-12">
+                    <div class="p-6 bg-white rounded-xl border-2 border-[#E5DCC5] shadow-[4px_4px_0px_0px_rgba(229,220,197,1)] font-body">
+                        <h3 class="font-xilo font-bold text-armorial-dark mb-4 text-xl">Bio</h3>
+                        <p class="text-armorial-gray text-base leading-relaxed mb-4">
+                            Pós-doutorando em Ciência da Computação pelo Cin UFPE sob a orientação do professor Silvio Meira, Doutor em Ciência da Computação pela UFPE, Mestre Arte e Tecnologia pela Universidade do Minho e Especialista em Design da Informação pela UFPE. 
+                        </p>
+                        <p class="text-armorial-gray text-base leading-relaxed">
+                            Desde outubro de 2024, atuo como Professor da <strong>UFRPE</strong>, expandindo minhas pesquisas em como a visualização de dados pode ajudar pessoas e organizações. Entre 2013 e 2024 atuei professor do <strong>IFPB</strong> nos cursos Superior de Tecnologia em Design Gráfico e no Integrado em Multimídia. 
+                        </p>
+
+                    <p class="text-armorial-gray text-base leading-relaxed">
+                        <br />
+                        Atuo como consultor, coordenador de projeto e líder técnico em projetos de pesquisa e desenvolvimento e de transformação figital em clientes no Brasil, Portugal, Espanha e Estados Unidos.<br /><br />
+                    Fui Chair do eixo de Visualização de dados no Congresso Internacional de Design da Informação - CIDI 2025 e Chair do eixo Tecnologia do CIDI 2021. Em 2019 e 2020 fui curador de Design Thinking e UX na The Developers Conference em Recife. Entre 2012 e 2017 foi curador de robótica, design, visualização de dados da Campus Party Brasil e Campus Party Recife. Em 2013 organizei o Interaction South America, em Recife.</p>
+                    </div>
+                </div>
+                  <div class="md:col-span-3 space-y-12">
+                    <div class="font-body">
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark mb-6 flex items-center gap-2">
+                            <i data-lucide="graduation-cap" class="text-armorial-rust w-6 h-6"></i>
+                            Formação
+                        </h3>
+                        <div class="space-y-8 border-l-2 border-[#E5DCC5] pl-6">
+
+                             <div class="relative">
+                                <div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-armorial-dark border-2 border-armorial-paper"></div>
+                                <h4 class="font-bold text-armorial-dark text-lg leading-tight">Pós-Doutorado em Ciência da Computação (em andamento)</h4>
+                                <p class="text-sm text-armorial-gray mt-1 font-medium">Cin-UFPE, 2025</p>
+                            </div>
+                            
+                            <div class="relative">
+                                <div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-armorial-dark border-2 border-armorial-paper"></div>
+                                <h4 class="font-bold text-armorial-dark text-lg leading-tight">Doutorado em Ciência da Computação</h4>
+                                <p class="text-sm text-armorial-gray mt-1 font-medium">UFPE, 2019</p>
+                            </div>
+
+                            <div class="relative">
+                                <div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-armorial-dark border-2 border-armorial-paper"></div>
+                                <h4 class="font-bold text-armorial-dark text-lg leading-tight">Mestrado em Tecnologia e Arte Digital</h4>
+                                <p class="text-sm text-armorial-gray mt-1 font-medium">Univ. do Minho (PT), 2011</p>
+                            </div>
+
+                              <div class="relative">
+                                <div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-armorial-dark border-2 border-armorial-paper"></div>
+                                <h4 class="font-bold text-armorial-dark text-lg leading-tight">Especialização em Design da Informação</h4>
+                                <p class="text-sm text-armorial-gray mt-1 font-medium">UFPE, 2009</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Right: Experience -->
+                <div id="experiencia" class="md:col-span-6 font-body">
+                    <h2 class="text-3xl font-xilo font-bold text-armorial-dark mb-10 flex items-center gap-3">
+                        <i data-lucide="briefcase" class="text-armorial-rust w-8 h-8"></i>
+                        Trajetória
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        
+                        <!-- Item 1 -->
+                        <div class="group p-8 rounded-xl border-2 bg-white border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,0.1)] transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-blue">Professor</h3>
+                                    <p class="text-armorial-gray font-medium">UFRPE - Universidade Federal Rural de Pernambuco</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-md text-xs font-bold uppercase tracking-wide whitespace-nowrap bg-armorial-blue/10 text-armorial-blue">
+                                    Desde Oututubro 2024
+                                </span>
+                            </div>
+                            <p class="text-armorial-gray leading-relaxed max-w-2xl font-normal">
+                                Professor efetivo, atuando no ensino e pesquisa na intersecção entre Design e Computação.
+                            </p>
+                        </div>
+                        
+                         <!-- Item 1 -->
+                        <div class="group p-8 rounded-xl border-2 bg-white border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,0.1)] transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-blue">Fundador e pesquisador</h3>
+                                    <p class="text-armorial-gray font-medium">Datavizbr</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-md text-xs font-bold uppercase tracking-wide whitespace-nowrap bg-armorial-blue/10 text-armorial-blue">
+                                    Desde 2017
+                                </span>
+                            </div>
+                            <p class="text-armorial-gray leading-relaxed max-w-2xl font-normal">
+                                 Fundador e curador da maior publicação sobre visualização de dados em português.
+                            </p>
+                        </div>
+
+                        <!-- Item 2 
+                        <div class="group p-8 rounded-xl border-2 bg-white border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,0.1)] transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-blue">Professor Colaborador (Mestrado)</h3>
+                                    <p class="text-armorial-gray font-medium">CESAR School</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-md text-xs font-bold uppercase tracking-wide whitespace-nowrap bg-armorial-blue/10 text-armorial-blue">
+                                    Atual
+                                </span>
+                            </div>
+                            <p class="text-armorial-gray leading-relaxed max-w-2xl font-normal">
+                                Professor no Mestrado Profissional em Engenharia de Software, orientando projetos de inovação.
+                            </p>
+                        </div>
+                        -->
+
+                         <!-- Item 3 -->
+                        <div class="group p-8 rounded-xl border-2 bg-[#F5F5F5] border-transparent opacity-75 hover:opacity-100 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-gray">Professor</h3>
+                                    <p class="text-armorial-gray font-medium">IFPB</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-md text-xs font-bold uppercase tracking-wide whitespace-nowrap bg-[#E0E0E0] text-[#888]">
+                                    Entre 2013 e 2024
+                                </span>
+                            </div>
+                            <p class="text-armorial-gray leading-relaxed max-w-2xl font-normal">
+                                Professor do curso Superior de Tecnologia em Design Gráfico e do Integrado em Multimídia.
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                     <!-- Right: Experience -->
+                <div id="experiencia" class="md:col-span-3 font-body">
+                    <h2 class="text-3xl font-xilo font-bold text-armorial-dark mb-10 flex items-center gap-3">
+                        <i class="text-armorial-rust w-8 h-8"></i>
+                        Curadorias
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        
+                        <!-- Item 1 -->
+                        <div class="group p-8 rounded-xl border-2 bg-white border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,0.1)] transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-blue">Congresso Internacional de Design da Informação (CIDI)</h3>
+                                    <p class="text-armorial-gray font-medium">2025 e 2021</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="group p-8 rounded-xl border-2 bg-white border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,0.1)] transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-blue">Campus Party Brasil e Campus Party Recife</h3>
+                                    <p class="text-armorial-gray font-medium">2012, 2013, 2014, 2015 e 2016</p>
+                                </div>
+                            </div>
+                        </div>
+
+                          <div class="group p-8 rounded-xl border-2 bg-white border-armorial-dark shadow-[4px_4px_0px_0px_rgba(45,45,42,0.1)] transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <h3 class="text-xl font-xilo font-bold text-armorial-blue">Interaction South America</h3>
+                                    <p class="text-armorial-gray font-medium">2013</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
 
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+                   
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
+                        </div>
+                    </div>
+                </div>
+                </div>
 
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127554644-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+            </div>
+        </div>
+    </section>
 
-          gtag('config', 'UA-127554644-1');
-        </script>
+    <!-- CLIPPING -->
+    <section id="clipping" class="py-24 px-6 bg-[#F3EFEA] border-y border-[#E5DCC5] font-body">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-xilo font-bold text-armorial-dark mb-12 text-center">Clipping & Entrevistas</h2>
+            <div class="grid gap-6">
+                
+                <a href="https://www.youtube.com/live/6t_4FO_1TJA?si=sq-drhNfyUkRnrgl" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="play-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">Design Team</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Design de Dados: Bate-papo ao vivo</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Como dados influenciam o design de produtos digitais modernos.</p>
+                    </div>
+                </a>
 
-    </body>
+                <a href="hhttps://www.youtube.com/live/NMtDGrWrOig?si=3h2TCmxkAIZtT9NL" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="play-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">Datavis Lisboa</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Visualização de dados com sotaque brasileiro</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Será uma conversa onde o convidado irá analisar o desenvolvimento da visualização de dados pelos designers brasileiros nos últimos 10 anos e as suas ramificações noutras áreas como as artes, o jornalismo de dados e a ciência de dados. A consolidação da comunidade de visualização de dados no Brasil é algo para o qual o Rodrigo tem vindo a contribuir através do seu trabalho como investigador e curador.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/live/aVh33xp2qNc?si=AaDrAt8xu19dYiiw" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="play-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">UXLab</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Interação entre mercado e academia</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Conversa com Andrei Gurgel e Rodrigo Medeiros sobre a interação entre mercado e academia no design.</p>
+                    </div>
+                </a>
+
+                  <a href="https://movimentoux.com/temporada-1/rodrigo-medeiros/" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="podcast" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">Movimento UX</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Como começar em UX?</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Conversa com Izabela de Fátima e Rodrigo Medeiros sobre o processo de design centrado no usúario, a relação dele com interfaces tangíveis, arte, tecnologia, o mercado de UX no Brasil e muito mais.</p>
+                    </div>
+                </a>
+
+                <a href="https://creators.spotify.com/pod/profile/design-centro/episodes/05---Rodrigo-Medeiros--Designer-de-Interao-e-Professor-do-IFPB-ebe4sh" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="podcast" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">Design centro</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Trajetória em UX começando em Recife</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Conversa com Rodrigo Medeiros sobre a trajetória em UX começando de Recife. </p>
+                    </div>
+                </a>
+
+                <a href="https://youtu.be/tETSTzgBUeA?si=V453hIWLTR09u7_t" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="play-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">TEDx Portal do Sol</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Perspectivas sobre o lixo </h3>
+                        <p class="text-armorial-gray text-sm font-normal">Primeira palestra no TEDx falando sobre resíduos eletroeletrônicos (lixo eletrônico) e como isso impacta nas nossas vidas.</p>
+                    </div>
+                </a>
+
+                 <a href="https://youtu.be/tETSTzgBUeA?si=V453hIWLTR09u7_t" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-rust/10 text-armorial-rust">
+                        <i data-lucide="play-circle" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-rust">Datavizbr e Visualmente</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">E se todos os mortos por Covid-19 no Brasil fossem seus vizinhos? Infografia No Epicentro.</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Papo sobre o projeto brasileiro No Epicentro, uma visualização de dados sobre as vítimas da CODIV-19.</p>
+                    </div>
+                </a>
+
+
+                
+
+                <a href="https://medium.com/datavizbr" target="_blank" class="group bg-white p-6 rounded-xl border-2 border-transparent hover:border-armorial-rust shadow-sm hover:shadow-md transition-all flex items-start gap-6 relative overflow-hidden">
+                    <div class="hidden md:flex flex-shrink-0 w-14 h-14 rounded-lg items-center justify-center font-bold transition-transform group-hover:scale-110 bg-armorial-blue/10 text-armorial-blue">
+                        <i data-lucide="external-link" class="w-7 h-7"></i>
+                    </div>
+                    <div class="flex-grow z-10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wide text-armorial-blue">Medium / datavizbr</span>
+                        </div>
+                        <h3 class="text-xl font-xilo font-bold text-armorial-dark group-hover:text-armorial-rust mb-2">Visualização de dados com sotaque brasileiro</h3>
+                        <p class="text-armorial-gray text-sm font-normal">Série de artigos mapeando a produção e os profissionais nacionais.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-armorial-dark text-armorial-paper py-12 px-6 font-body">
+        <div class="container mx-auto max-w-6xl flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-xilo font-bold text-armorial-paper">rodrigo medeiros</span>
+                </div>
+                <p class="text-sm text-[#dadada] flex items-center gap-2 font-medium">
+                    Orgulhosamente feito em Recife 
+                    <span class="text-armorial-gold text-lg" title="Pernambuco">☂️</span>
+                </p>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="https://www.linkedin.com/in/rodrigopmedeiros" target="_blank" class="p-2 text-[#dadada] hover:text-armorial-gold hover:bg-[#383835] rounded-full transition-all">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                </a>
+                <!-- <a href="mailto:contato@rodrigomedeiros.com.br" class="p-2 text-[#dadada] hover:text-armorial-gold hover:bg-[#383835] rounded-full transition-all">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                </a> -->
+            </div>
+
+            <div class="text-xs text-[#dadada] text-right font-medium">
+                © 2025 Rodrigo Medeiros.<br/>
+                Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Inicializa ícones Lucide
+        lucide.createIcons();
+
+        // Lógica do Menu Mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+            }
+            lucide.createIcons();
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Efeito de Scroll na Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+</body>
 </html>

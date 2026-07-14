@@ -197,12 +197,24 @@
             <div class="grid md:grid-cols-2 gap-8 font-body">
 
                 <!-- Livro 1 -->
-                <a href="https://www.riobooks.com.br/design/dataviz-em-perspectiva" target="_blank" rel="noopener" class="group relative bg-[#383835] rounded-xl p-8 border-2 border-armorial-gold/40 hover:border-armorial-gold transition-all duration-300 flex gap-6 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-40 h-40 bg-armorial-rust rounded-bl-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="flex-shrink-0 pt-1">
-                        <img src="img/capa-dataviz.webp" alt="Capa do livro Dataviz em Perspectiva" class="w-24 md:w-28 aspect-[7/10] object-cover border border-armorial-dark shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <a href="https://www.riobooks.com.br/design/dataviz-em-perspectiva" target="_blank" rel="noopener" class="group relative bg-[#383835] rounded-xl border-2 border-armorial-gold/40 hover:border-armorial-gold transition-all duration-300 flex flex-col overflow-hidden">
+
+                    <!-- Carrossel -->
+                    <div id="dataviz-carousel" class="relative w-full h-52 md:h-64 flex-shrink-0 overflow-hidden">
+                        <img src="img/dataviz01.jpg" alt="Livro Dataviz em Perspectiva exposto em um suporte" class="carousel-slide absolute inset-0 w-full h-full object-cover object-[center_35%] opacity-100 transition-opacity duration-700">
+                        <img src="img/dataviz02.jpg" alt="Páginas internas coloridas do livro Dataviz em Perspectiva" class="carousel-slide absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700">
+                        <img src="img/dataviz03.jpg" alt="Exemplares abertos do livro Dataviz em Perspectiva" class="carousel-slide absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700">
+
+                        <div class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#383835]/70 to-transparent pointer-events-none"></div>
+
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                            <button type="button" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white transition-colors" aria-label="Ver imagem 1"></button>
+                            <button type="button" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-colors" aria-label="Ver imagem 2"></button>
+                            <button type="button" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-colors" aria-label="Ver imagem 3"></button>
+                        </div>
                     </div>
-                    <div class="relative z-10">
+
+                    <div class="relative z-10 p-8">
                         <span class="inline-flex items-center gap-1.5 bg-armorial-gold text-armorial-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded mb-3">
                             <i data-lucide="trophy" class="w-3 h-3"></i>
                             Livro premiado
@@ -220,12 +232,15 @@
                 </a>
 
                 <!-- Livro 2 -->
-                <a href="https://a.co/d/gb2HqoK" target="_blank" rel="noopener" class="group relative bg-[#383835] rounded-xl p-8 border border-[#4A4A46] hover:border-armorial-gold transition-all duration-300 flex gap-6 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-40 h-40 bg-armorial-blue rounded-bl-full opacity-30 group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="flex-shrink-0 pt-1">
-                        <img src="img/sinfonia.jpg" alt="Capa do livro Sinfonia: Orquestrando a Inteligência Artificial" class="w-24 md:w-28 aspect-[7/10] object-cover border border-armorial-dark shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <a href="https://a.co/d/gb2HqoK" target="_blank" rel="noopener" class="group relative bg-[#383835] rounded-xl border border-[#4A4A46] hover:border-armorial-gold transition-all duration-300 flex flex-col overflow-hidden">
+
+                    <!-- Imagem de capa (carrossel futuro) -->
+                    <div class="relative w-full h-52 md:h-64 flex-shrink-0 overflow-hidden">
+                        <img src="img/sinfonia-livro.jpg" alt="Livro Sinfonia: Orquestrando a Inteligência Artificial sobre uma mesa" class="absolute inset-0 w-full h-full object-cover object-[center_28%]">
+                        <div class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#383835]/70 to-transparent pointer-events-none"></div>
                     </div>
-                    <div class="relative z-10">
+
+                    <div class="relative z-10 p-8">
                         <h3 class="text-2xl font-xilo font-bold leading-tight text-white mb-1">Sinfonia: Orquestrando a Inteligência Artificial</h3>
                         <p class="text-armorial-gold text-sm font-semibold mb-3">Rodrigo Medeiros & Vinicius Garcia</p>
                         <p class="text-[#dadada] leading-relaxed text-sm font-normal">Uma metodologia para guiar equipes na criação e evolução de produtos de IA, nascida e validada em um laboratório vivo dentro da universidade.</p>
@@ -555,6 +570,39 @@
         mobileLinks.forEach(link => {
             link.addEventListener('click', toggleMenu);
         });
+
+        // Carrossel do card Dataviz em Perspectiva
+        const carousel = document.getElementById('dataviz-carousel');
+        if (carousel) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                currentSlide = index;
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('opacity-100', i === index);
+                    slide.classList.toggle('opacity-0', i !== index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('bg-white', i === index);
+                    dot.classList.toggle('bg-white/40', i !== index);
+                });
+            }
+
+            let autoplay = setInterval(() => showSlide((currentSlide + 1) % slides.length), 4000);
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', (e) => {
+                    // O card inteiro é um link: impede a navegação ao trocar de imagem
+                    e.preventDefault();
+                    e.stopPropagation();
+                    clearInterval(autoplay);
+                    showSlide(i);
+                    autoplay = setInterval(() => showSlide((currentSlide + 1) % slides.length), 4000);
+                });
+            });
+        }
 
         // Efeito de Scroll na Navbar
         const navbar = document.getElementById('navbar');
